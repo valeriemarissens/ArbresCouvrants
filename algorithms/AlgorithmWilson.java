@@ -18,24 +18,43 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe qui cherche un arbre couvrant dans un graphe en appliquant la stratégie
+ * de Wilson.
+ */
 public class AlgorithmWilson implements Algorithm{
+
+    /**
+     * Graphe où on applique l'algorithme.
+     */
     private final Graph graph;
+
+    /**
+     * Nombre de sommets dans le graphe.
+     */
     private final int nbVertices;
+
+    /**
+     * Arbre couvrant mis à jour dans la méthode algo()
+     */
     private SpanningTree spanningTree;
-    private boolean finished;
 
     public AlgorithmWilson(@NotNull Graph g){
         this.graph = g;
         this.nbVertices = graph.vertices();
         this.spanningTree = new SpanningTree();
-        this.finished = false;
     }
 
+    /**
+     * Applique l'algorithme de Wilson pour trouver un arbre couvrant dans
+     * le graphe.
+     *
+     * @return un arbre couvrant du graphe.
+     */
     @Override
     public SpanningTree algo() {
         graph.clean();
         spanningTree = new SpanningTree();
-        finished = false;
         List<Integer> unvisited = new ArrayList<>();
         List<Integer> visited = new ArrayList<>();
 
@@ -55,6 +74,17 @@ public class AlgorithmWilson implements Algorithm{
         return "Wilson";
     }
 
+    /**
+     * Choisit un sommet non visité aléatoirement puis effectue une marche aléatoire
+     * en partant de ce sommet jusqu'à tomber sur un sommet déjà visité. Elimine les
+     * boucles de la marche aléatoire, ajoute les sommets qui restent aux sommets
+     * visités et marque les arêtes qui restent pour les récupérer dans l'arbre couvrant.
+     * S'il reste encore des sommets non visités, fait un appel récursif.
+     *
+     * @param unvisited liste des sommets non visités.
+     * @param visited liste des sommets visités.
+     * @return un arbre couvrant du graphe.
+     */
     private SpanningTree auxiliaryAlgorithm(List<Integer> unvisited, List<Integer> visited){
         // Tous les sommets sont visités.
         if (unvisited.isEmpty()){
@@ -90,7 +120,7 @@ public class AlgorithmWilson implements Algorithm{
             // On ajoute toutes les arêtes à l'arbre.
             for (int k = 0; k < walk.size(); k++) {
                 int vertex = walk.get(k);
-                if (k + 1 < walk.size()) { // todo: voir autre façon de récupérer les edges ou faire que avec des edges
+                if (k + 1 < walk.size()) {
                     for (Edge e : graph.adj(vertex)) {
                         if (e.other(vertex) == walk.get(k + 1)) {
                             e.mark(true);
@@ -103,6 +133,13 @@ public class AlgorithmWilson implements Algorithm{
         }
     }
 
+    /**
+     * @param start sommet de départ.
+     * @param walk marche aléatoire qui part de start.
+     * @param visited liste des sommets déjà visités.
+     * @return une marche aléatoire qui parcourt les sommets jusqu'à ce que start
+     * soit visité.
+     */
     private List<Integer> randomWalk(int start, List<Integer> walk, List<Integer> visited){
         if (visited.contains(start)){
             return walk;

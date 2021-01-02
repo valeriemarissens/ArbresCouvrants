@@ -17,13 +17,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Classe qui cherche un arbre couvrant dans un graphe en appliquant la stratégie
+ * de Aldous-Broder.
+ */
 public class AlgorithmAldousBroder implements Algorithm {
+    /**
+     * Graphe où on applique l'algorithme.
+     */
     private final Graph graph;
 
     /**
      * Liste qui contient les sommets visités.
      */
     private List<Integer> grey;
+
+    /**
+     * Arbre couvrant mis à jour dans la méthode algo().
+     */
     private SpanningTree spanningTree;
 
     public AlgorithmAldousBroder(@NotNull Graph graph){
@@ -32,6 +43,11 @@ public class AlgorithmAldousBroder implements Algorithm {
         this.spanningTree = new SpanningTree();
     }
 
+    /**
+     * Application de l'algorithme de Aldous-Broder pour trouver un arbre couvrant
+     * du graphe donné.
+     * @return un arbre couvrant.
+     */
     @Override
     public SpanningTree algo(){
         grey = new ArrayList<>();
@@ -53,6 +69,15 @@ public class AlgorithmAldousBroder implements Algorithm {
         return "Aldous-Broder";
     }
 
+    /**
+     * Marche aléatoire selon la stratégie de Aldous-Broder. On commence sur
+     * le sommet red, puis on se déplace aléatoirement sur l'un de ses voisins.
+     * Ensuite on lance l'appel récursif. L'algo s'arrête quand tous les sommets
+     * ont été visités.
+     *
+     * @param red sommet de départ.
+     * @return vrai.
+     */
     private boolean randomWalk(@NotNull int red){
         // Tous les sommets ont été visités.
         if (isFinished()){

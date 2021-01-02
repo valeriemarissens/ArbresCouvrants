@@ -13,7 +13,8 @@ import graph.SpanningTree;
 public interface Algorithm {
     enum type{
         aldousBroder,
-        wilson
+        wilson,
+        kruskal
     }
 
     SpanningTree algo();

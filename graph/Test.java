@@ -10,12 +10,12 @@ package graph;
 
 import algorithms.Algorithm;
 import algorithms.AlgorithmAldousBroder;
+import algorithms.AlgorithmKruskal;
 import algorithms.AlgorithmWilson;
 import labyrinth.Labyrinth;
 import utils.Histogram;
 import java.io.*;
 import java.util.*;
-
 
 public class Test{
 
@@ -133,12 +133,14 @@ public class Test{
 		Graph g1 = Graph.example();
 
 		// Test une fois
-		oneTime(g, Algorithm.type.wilson, size);
+		//oneTime(g, Algorithm.type.wilson, size);
 		//oneTime(g, Algorithm.type.aldousBroder, size);
+		oneTime(g, Algorithm.type.kruskal, size);
 
 		// Tests un million de fois.
 		//oneMillionTimes(g1, Algorithm.type.aldousBroder);
 		//oneMillionTimes(g1, Algorithm.type.wilson);
+		oneMillionTimes(g1, Algorithm.type.kruskal);
 
 		// Labyrinthes
     }
@@ -148,8 +150,10 @@ public class Test{
 		Algorithm algo;
 		if (type.equals(Algorithm.type.aldousBroder))
 			algo = new AlgorithmAldousBroder(g);
-		else
+		else if (type.equals(Algorithm.type.wilson))
 			algo = new AlgorithmWilson(g);
+		else
+			algo = new AlgorithmKruskal(g);
 
 		SpanningTree st = algo.algo();
 		System.out.println(st.toString());
@@ -164,7 +168,7 @@ public class Test{
 		d.close();
 		printLaby(g,size, "toto.tex");*/
 
-		Labyrinth labyrinth = new Labyrinth(g);
+		//Labyrinth labyrinth = new Labyrinth(g);
 	}
 
 	/**
@@ -179,8 +183,10 @@ public class Test{
 		Algorithm algo;
 		if (type.equals(Algorithm.type.aldousBroder))
 			algo = new AlgorithmAldousBroder(g);
-		else
+		else if (type.equals(Algorithm.type.wilson))
 			algo = new AlgorithmWilson(g);
+		else
+			algo = new AlgorithmKruskal(g);
 
 		// Compte le nombre d'apparitions de chaque arbre couvrant
 		Map<SpanningTree, Double> nbApparition = new HashMap<>();
@@ -224,4 +230,4 @@ public class Test{
 
 		SpanningTree st = algo.algo();
 	}
-} 
+}
