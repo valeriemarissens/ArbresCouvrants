@@ -1,3 +1,11 @@
+/*
+ * AlgorithmKruskal.java
+ * Project
+ *
+ * Created by ValerieMarissens on 01/01/2021.
+ * Copyright © 2020 ValerieMarissens. All rights reserved.
+ */
+
 package algorithms;
 
 import graph.Edge;
@@ -21,6 +29,10 @@ public class AlgorithmKruskal implements Algorithm {
         this.graph = graph;
         this.spanningTree = new SpanningTree();
     }
+
+    /* -------------------------------------------------
+     *             APPLICATION DE L'ALGORITHME
+     * ------------------------------------------------- */
 
     /**
      * Applique l'algorithme de Kruskal pour trouver un arbre couvrant dans
@@ -92,6 +104,10 @@ public class AlgorithmKruskal implements Algorithm {
         // Appel récursif.
         return find(parent[vertex], parent);
     }
+
+    /* -------------------------------------------------
+     *                      GETTERS
+     * ------------------------------------------------- */
 
     @Override
     public String getTitle() {

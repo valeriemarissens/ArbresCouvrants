@@ -13,20 +13,17 @@ public class Graph{
     private final int[] coordX;
     private final int[] coordY;
     private final int V;
-    private int E;
 
     /**
      *
      * @param N nombre de sommets.
      */
     @SuppressWarnings("unchecked")
-    public Graph(int N)
-    {
+    public Graph(int N){
         this.V = N;
-        this.E = 0;
         adj = (ArrayList<Edge>[]) new ArrayList[N];
         for (int v= 0; v < N; v++)
-            adj[v] = new ArrayList<Edge>();
+            adj[v] = new ArrayList<>();
         coordX = new int[N];
         coordY = new int[N];
         for (int v= 0; v < N; v++)
@@ -40,8 +37,7 @@ public class Graph{
         return V;
     }
 
-    public void setCoordinate(int i, int x, int y)
-    {
+    public void setCoordinate(int i, int x, int y){
         coordX[i] = x;
         coordY[i] = y;
     }
@@ -51,8 +47,7 @@ public class Graph{
      *
      * @param e arête.
      */
-    public void addEdge(Edge e)
-    {
+    public void addEdge(Edge e){
         int v = e.getFrom();
         int w = e.getTo();
         adj[v].add(e);
@@ -65,15 +60,14 @@ public class Graph{
      */
     public ArrayList<Edge> adj(int v)
     {
-        return new ArrayList<Edge>(adj[v]);
+        return new ArrayList<>(adj[v]);
     }
 
     /**
      * @return toutes les arêtes du graphe.
      */
-    public ArrayList<Edge> edges()
-    {
-        ArrayList<Edge> list = new ArrayList<Edge>();
+    public ArrayList<Edge> edges(){
+        ArrayList<Edge> list = new ArrayList<>();
         for (int v = 0; v < V; v++)
             for (Edge e : adj(v)) {
                 if (e.getFrom() == v)
@@ -156,10 +150,9 @@ public class Graph{
     /**
      * Écrit un fichier dot contenant le résultat.
      *
-     * @param s
+     * @param s nom du fichier.
      */
-    public void writeFile(String s)
-    {
+    public void writeFile(String s){
         try
         {
             PrintWriter writer = new PrintWriter(s, "UTF-8");
@@ -169,8 +162,9 @@ public class Graph{
             writer.println("}");
             writer.close();
         }
-        catch (IOException e)
-        {}
+        catch (IOException e){
+            System.out.println("pb write file");
+        }
     }
 
     public void clean() {

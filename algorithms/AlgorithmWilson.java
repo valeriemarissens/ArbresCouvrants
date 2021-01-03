@@ -45,6 +45,10 @@ public class AlgorithmWilson implements Algorithm{
         this.spanningTree = new SpanningTree();
     }
 
+    /* -------------------------------------------------
+     *             APPLICATION DE L'ALGORITHME
+     * ------------------------------------------------- */
+
     /**
      * Applique l'algorithme de Wilson pour trouver un arbre couvrant dans
      * le graphe.
@@ -67,11 +71,6 @@ public class AlgorithmWilson implements Algorithm{
         unvisited.remove(0);
 
         return auxiliaryAlgorithm(unvisited, visited);
-    }
-
-    @Override
-    public String getTitle() {
-        return "Wilson";
     }
 
     /**
@@ -209,5 +208,14 @@ public class AlgorithmWilson implements Algorithm{
         if ((firstAppearance >= 0) && (lastAppearance <= list.size())) {
             list.subList(firstAppearance + 1, lastAppearance + 1).clear();
         }
+    }
+
+    /* -------------------------------------------------
+     *                      GETTERS
+     * ------------------------------------------------- */
+
+    @Override
+    public String getTitle() {
+        return "Wilson";
     }
 }

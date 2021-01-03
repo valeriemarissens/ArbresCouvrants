@@ -22,6 +22,7 @@ import java.util.Random;
  * de Aldous-Broder.
  */
 public class AlgorithmAldousBroder implements Algorithm {
+
     /**
      * Graphe où on applique l'algorithme.
      */
@@ -43,6 +44,10 @@ public class AlgorithmAldousBroder implements Algorithm {
         this.spanningTree = new SpanningTree();
     }
 
+    /* -------------------------------------------------
+     *             APPLICATION DE L'ALGORITHME
+     * ------------------------------------------------- */
+
     /**
      * Application de l'algorithme de Aldous-Broder pour trouver un arbre couvrant
      * du graphe donné.
@@ -62,11 +67,6 @@ public class AlgorithmAldousBroder implements Algorithm {
         this.randomWalk(start);
 
         return spanningTree;
-    }
-
-    @Override
-    public String getTitle() {
-        return "Aldous-Broder";
     }
 
     /**
@@ -124,6 +124,15 @@ public class AlgorithmAldousBroder implements Algorithm {
         }
 
         return f;
+    }
+
+    /* -------------------------------------------------
+     *                      GETTERS
+     * ------------------------------------------------- */
+
+    @Override
+    public String getTitle() {
+        return "Aldous-Broder";
     }
 
     @Override

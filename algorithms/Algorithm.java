@@ -10,13 +10,23 @@ package algorithms;
 
 import graph.SpanningTree;
 
+/**
+ * Interface dont implémentent les 3 types d'algorithmes.
+ */
 public interface Algorithm {
+
+    /**
+     * Types d'algorithmes.
+     */
     enum type{
         aldousBroder,
         wilson,
         kruskal
     }
 
+    /**
+     * @return un arbre couvrant en utilisant l'algorithme.
+     */
     SpanningTree algo();
 
     String getTitle();

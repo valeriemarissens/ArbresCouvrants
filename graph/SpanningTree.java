@@ -26,10 +26,6 @@ public class SpanningTree {
         this.spanningTree.add(e);
     }
 
-    public List<Edge> getSpanningTree() {
-        return spanningTree;
-    }
-
     @Override
     public String toString() {
         return spanningTree.toString();

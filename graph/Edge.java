@@ -5,29 +5,29 @@ package graph;
  */
 public class Edge
 {
+    /**
+     * Sommet d'où l'on vient.
+     */
     private final int from;
-    private final int to;
 
     /**
-     * Au début toutes les arêtes sont des murs.
+     * Sommet où l'on va.
      */
-    private boolean isCorridor;
+    private final int to;
 
     /**
     * Vrai si cette arête est utilisée dans l'arbre couvrant.
     */
     boolean used;
 
-    Edge(int x, int y){
+    public Edge(int x, int y){
         this.from = x;
         this.to = y;
         this.used = false;
-        this.isCorridor = false;
     }
 
     /**
-     *
-     * @param v
+     * @param v sommet.
      * @return le sommet à l'autre extrémité de l'arête
      */
     public final int other(int v)
@@ -37,13 +37,6 @@ public class Edge
 
     public void mark(boolean b){
         this.used = b;
-    }
-
-    /**
-     * Fait d'une arête un couloir.
-     */
-    public void corridor(){
-        this.isCorridor = true;
     }
 
     public int getFrom() {
@@ -56,10 +49,6 @@ public class Edge
 
     public boolean isUsed() {
         return used;
-    }
-
-    public boolean isCorridor() {
-        return isCorridor;
     }
 
     @Override

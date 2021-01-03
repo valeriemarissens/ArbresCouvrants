@@ -16,6 +16,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.Map;
 
+/**
+ * Classe qui représente un histogramme : modélisation des probabilités d'apparition
+ * des arbres couvrants donnés en paramètres.
+ */
 public class Histogram {
     private final Map<SpanningTree, Double> bars;
     /**
@@ -33,25 +37,40 @@ public class Histogram {
      */
     private static final int DEC_TX = DEC_X + 5;
 
-    /** Décalage en Y du texte au-dessus des barres de l'histogramme. */
+    /**
+     * Décalage en Y du texte au-dessus des barres de l'histogramme.
+     */
     private static final int DEC_TY = DEC_Y + 2;
 
-    /** Décalage en hauteur de la ligne permettant de créer la flèche. */
+    /**
+     * Décalage en hauteur de la ligne permettant de créer la flèche.
+     */
     private static final int DEC_FH = 4;
 
-    /** Décalage en longueur de la ligne permettant de créer la flèche. */
+    /**
+     * Décalage en longueur de la ligne permettant de créer la flèche.
+     */
     private static final int DEC_FL = 8;
 
-    /** Largeur d'une barre de l'histogramme. */
+    /**
+     * Largeur d'une barre de l'histogramme.
+     */
     private static final int LG_B = 40;
 
-    /** Incrément pour calculer la hauteur des barres de l'histogramme en fonction de la valeur. */
+    /**
+     * Incrément pour calculer la hauteur des barres de l'histogramme en fonction de la valeur.
+     */
     private static final int INCR = 15;
 
     public Histogram(@NotNull Map<SpanningTree, Double> probabilities){
         this.bars = probabilities;
     }
 
+    /**
+     * Dessine tous les composants de l'histogramme.
+     *
+     * @return image correspondant à l'histogramme.
+     */
     public BufferedImage toImage(){
         int imageSize = 400;
         BufferedImage image = new BufferedImage(imageSize, imageSize, BufferedImage.TYPE_INT_RGB);
